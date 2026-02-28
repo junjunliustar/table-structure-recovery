@@ -72,8 +72,10 @@ int main() {
               << ", " << table_boundary.x2 << ", " << table_boundary.y2 << "]" << std::endl;
     std::cout << std::endl;
     
-    // Run table restoration
-    TableStructure table = restoreTableStructure(cells, table_boundary, 2.0f);
+    // Run table restoration with default confidence threshold (0.5)
+    // The confidence threshold is the binarization threshold: cells with score
+    // below 0.5 are discarded, matching the standard sigmoid binarization threshold.
+    TableStructure table = restoreTableStructure(cells, table_boundary, 2.0f, 0.5f);
     
     // Print grid information
     std::cout << "=== Grid Structure ===" << std::endl;

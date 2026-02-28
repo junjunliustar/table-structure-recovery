@@ -34,12 +34,16 @@ struct TableStructure {
  * @param cells Detected cell bounding boxes
  * @param table_boundary Table boundary box
  * @param cluster_threshold Distance threshold for coordinate clustering (default: 2.0)
+ * @param confidence_threshold Binarization threshold for cell confidence scores (default: 0.5)
+ *        Cells with score below this threshold are discarded, matching the standard
+ *        sigmoid binarization threshold used in segmentation models.
  * @return TableStructure with aligned cells and grid information
  */
 TableStructure restoreTableStructure(
     const std::vector<Box>& cells,
     const Box& table_boundary,
-    float cluster_threshold = 2.0
+    float cluster_threshold = 2.0,
+    float confidence_threshold = 0.5f
 );
 
 #endif // TABLE_RESTORATION_H

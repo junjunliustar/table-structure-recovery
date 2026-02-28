@@ -1,0 +1,8 @@
+/home/runner/work/table-structure-recovery/table-structure-recovery/build/CMakeFiles/table_restoration.dir
+/home/runner/work/table-structure-recovery/table-structure-recovery/build/CMakeFiles/table_restoration_example.dir
+/home/runner/work/table-structure-recovery/table-structure-recovery/build/CMakeFiles/edit_cache.dir
+/home/runner/work/table-structure-recovery/table-structure-recovery/build/CMakeFiles/rebuild_cache.dir
+/home/runner/work/table-structure-recovery/table-structure-recovery/build/CMakeFiles/list_install_components.dir
+/home/runner/work/table-structure-recovery/table-structure-recovery/build/CMakeFiles/install.dir
+/home/runner/work/table-structure-recovery/table-structure-recovery/build/CMakeFiles/install/local.dir
+/home/runner/work/table-structure-recovery/table-structure-recovery/build/CMakeFiles/install/strip.dir

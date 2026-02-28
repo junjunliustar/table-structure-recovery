@@ -87,7 +87,8 @@ void ensureBoundaries(std::vector<float>& lines, float boundary_min, float bound
 TableStructure restoreTableStructure(
     const std::vector<Box>& cells,
     const Box& table_boundary,
-    float cluster_threshold
+    float cluster_threshold,
+    float confidence_threshold
 ) {
     TableStructure result;
     
@@ -96,12 +97,25 @@ TableStructure restoreTableStructure(
         return result;
     }
     
+    // Filter cells below the confidence threshold (binarization step)
+    std::vector<Box> filtered_cells;
+    filtered_cells.reserve(cells.size());
+    for (const auto& cell : cells) {
+        if (cell.score >= confidence_threshold) {
+            filtered_cells.push_back(cell);
+        }
+    }
+    
+    if (filtered_cells.empty()) {
+        return result;
+    }
+    
     // Step 1: Extract all coordinates from cells
     std::vector<float> x_coords, y_coords;
-    x_coords.reserve(cells.size() * 2);
-    y_coords.reserve(cells.size() * 2);
+    x_coords.reserve(filtered_cells.size() * 2);
+    y_coords.reserve(filtered_cells.size() * 2);
     
-    for (const auto& cell : cells) {
+    for (const auto& cell : filtered_cells) {
         x_coords.push_back(cell.x1);
         x_coords.push_back(cell.x2);
         y_coords.push_back(cell.y1);
@@ -117,9 +131,9 @@ TableStructure restoreTableStructure(
     ensureBoundaries(result.row_lines, table_boundary.y1, table_boundary.y2, cluster_threshold);
     
     // Step 4: Map each cell to the grid
-    result.cells.reserve(cells.size());
+    result.cells.reserve(filtered_cells.size());
     
-    for (const auto& cell : cells) {
+    for (const auto& cell : filtered_cells) {
         AlignedCell aligned;
         
         // Find grid positions
