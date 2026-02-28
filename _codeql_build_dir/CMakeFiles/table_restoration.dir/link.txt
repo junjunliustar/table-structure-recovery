@@ -1,2 +1,0 @@
-/usr/bin/ar qc libtable_restoration.a CMakeFiles/table_restoration.dir/src/table_restoration.cpp.o
-/usr/bin/ranlib libtable_restoration.a
